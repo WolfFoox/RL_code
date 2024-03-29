@@ -44,6 +44,9 @@ class YuanYangEnv:
         self.bird_male_init_position=[0,0]
         self.bird_male_position = [0, 0]
         self.bird_female_init_position=[1080,0]
+        self.bird_female_position = [1080,0]
+        self.runway=[]
+        self.runway.append(self.bird_female_position)
     #def step(self):
     def collide(self,state_position):
         flag = 1
@@ -80,7 +83,12 @@ class YuanYangEnv:
         return flag
     def find(self,state_position):
         flag=0
-        if abs(state_position[0]-self.bird_female_init_position[0])<self.limit_distance_x and abs(state_position[1]-self.bird_female_init_position[1])<self.limit_distance_y:
+        if abs(state_position[0]-self.bird_female_position[0])<self.limit_distance_x and abs(state_position[1]-self.bird_female_position[1])<self.limit_distance_y:
+            flag=1
+        return flag
+    def catch(self,state_position):
+        flag=0
+        if abs(state_position[0]-self.bird_male_position[0])<self.limit_distance_x and abs(state_position[1]-self.bird_male_position[1])<self.limit_distance_y:
             flag=1
         return flag
     def state_to_position(self, state):
@@ -106,6 +114,7 @@ class YuanYangEnv:
             flag2 = self.find(state_position)
         return state
     def transform(self,state, action):
+        # self.Move()
         #将当前状态转化为坐标
         current_position=self.state_to_position(state)
         next_position = [0,0]
@@ -151,8 +160,8 @@ class YuanYangEnv:
             self.viewer=pygame.display.set_mode(self.screen_size,0,32)
             pygame.display.set_caption("yuanyang")
             #下载图片
-            self.bird_male = load_bird_male()
-            self.bird_female = load_bird_female()
+            self.bird_male = load_cat()
+            self.bird_female = load_mouse()
             self.background = load_background()
             self.obstacle = load_obstacle()
             #self.viewer.blit(self.bird_male, self.bird_male_init_position)
@@ -165,7 +174,7 @@ class YuanYangEnv:
         for i in range(11):
             pygame.draw.lines(self.viewer, (255, 255, 255), True, ((120*i, 0), (120*i, 900)), 1)
             pygame.draw.lines(self.viewer, (255, 255, 255), True, ((0, 90* i), (1200, 90 * i)), 1)
-        self.viewer.blit(self.bird_female, self.bird_female_init_position)
+        self.viewer.blit(self.bird_female, self.bird_female_position)
         #画障碍物
         for i in range(8):
             self.viewer.blit(self.obstacle, (self.obstacle1_x[i], self.obstacle1_y[i]))
@@ -187,6 +196,37 @@ class YuanYangEnv:
         self.gameover()
         # time.sleep(0.1)
         self.FPSCLOCK.tick(30)
+
+    def Move(self,action='s'):
+        next_position = [0, 0]
+        # a1 = self.actions[int(random.random() * 4)]
+        if action=='e':
+            next_position[0]=self.bird_female_position[0]+120
+            next_position[1]=self.bird_female_position[1]
+        if action=='s':
+            next_position[0]=self.bird_female_position[0]
+            next_position[1]=self.bird_female_position[1]+90
+        if action=='w':
+            next_position[0] = self.bird_female_position[0] - 120
+            next_position[1] = self.bird_female_position[1]
+        if action=='n':
+            next_position[0] = self.bird_female_position[0]
+            next_position[1] = self.bird_female_position[1] - 90
+
+        flag_collide = 0
+        flag_catch = 0
+        # 判断当前坐标是否与障碍物碰撞
+        flag_collide = self.collide(next_position)
+        # 判断状态是否是终点
+        flag_catch = self.catch(next_position)
+
+        if flag_collide==0 and flag_catch==0:
+            self.bird_female_position=next_position
+            self.runway.append(next_position)
+            return next_position
+        self.runway.append(self.bird_female_position)
+        return self.bird_female_position
+
 
 
 if __name__=="__main__":

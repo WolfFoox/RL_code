@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee979647-5537-4c2f-88de-4849cef1e8f6" name="Default Changelist" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <list default="true" id="ee979647-5537-4c2f-88de-4849cef1e8f6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/third chapter/CatMouseGame.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/RL_code.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/RL_code.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/second chapter/Mdp.py" beforeDir="false" afterPath="$PROJECT_DIR$/second chapter/Mdp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/second chapter/load.py" beforeDir="false" afterPath="$PROJECT_DIR$/second chapter/load.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/third chapter/dp_value_iteration.py" beforeDir="false" afterPath="$PROJECT_DIR$/third chapter/dp_value_iteration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/third chapter/load.py" beforeDir="false" afterPath="$PROJECT_DIR$/third chapter/load.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/third chapter/yuanyang_env.py" beforeDir="false" afterPath="$PROJECT_DIR$/third chapter/yuanyang_env.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,6 +65,7 @@
     <option name="width" value="1947" />
     <option name="height" value="594" />
   </component>
+  <component name="ProjectId" id="2e2Z5jV72ty40Fb4DWdfKAk2akQ" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -77,28 +90,28 @@
       </pane>
     </panes>
   </component>
-  <component name="PropertiesComponent">
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/RL_code/third chapter/resources&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\RL_code\third chapter\resources" />
       <recent name="D:\工作\github\RL_code\second chapter" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\RL_code\third chapter" />
+    </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Python.KB_game">
+  <component name="RunManager">
     <configuration name="KB_game" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="RL_code" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -164,12 +177,13 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.KB_game" />
         <item itemvalue="Python.dp_value_iteration" />
+        <item itemvalue="Python.KB_game" />
         <item itemvalue="Python.Mdp" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -205,6 +219,33 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/third chapter/dp_value_iteration.py</url>
+          <line>30</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/third chapter/dp_value_iteration.py</url>
+          <line>77</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/second chapter/Mdp.py">

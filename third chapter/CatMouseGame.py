@@ -5,7 +5,7 @@ import time
 import random
 import numpy as np
 
-class YuanYangEnv:
+class CatMouseGame:
     def __init__(self):
         self.states=[]
         for i in range(0,100):
@@ -17,7 +17,7 @@ class YuanYangEnv:
         self.FPSCLOCK = pygame.time.Clock()
         #屏幕大小
         self.screen_size=(1200,900)
-        self.bird_position=(0,0)
+        self.cat_position=(0, 0)
         self.limit_distance_x=120
         self.limit_distance_y=90
         self.obstacle_size=[120,90]
@@ -41,10 +41,12 @@ class YuanYangEnv:
             else:
                 self.obstacle2_y.append(90 * (i + 2))
 
-        self.bird_male_init_position=[0,0]
-        self.bird_male_position = [0, 0]
-        self.bird_female_init_position=[1080,0]
-        self.bird_female_position = [1080,0]
+        self.cat_init_position=[0, 0]
+        self.cat_position = [0, 0]
+        self.mouse_init_position=[600, 360]
+        self.mouse_position = [600, 360]
+        self.runway=[]
+        self.runway.append(self.mouse_position)
     #def step(self):
     def collide(self,state_position):
         flag = 1
@@ -81,12 +83,12 @@ class YuanYangEnv:
         return flag
     def find(self,state_position):
         flag=0
-        if abs(state_position[0]-self.bird_female_position[0])<self.limit_distance_x and abs(state_position[1]-self.bird_female_position[1])<self.limit_distance_y:
+        if abs(state_position[0]-self.mouse_position[0])<self.limit_distance_x and abs(state_position[1] - self.mouse_position[1])<self.limit_distance_y:
             flag=1
         return flag
     def catch(self,state_position):
         flag=0
-        if abs(state_position[0]-self.bird_male_position[0])<self.limit_distance_x and abs(state_position[1]-self.bird_male_position[1])<self.limit_distance_y:
+        if abs(state_position[0]-self.cat_position[0])<self.limit_distance_x and abs(state_position[1] - self.cat_position[1])<self.limit_distance_y:
             flag=1
         return flag
     def state_to_position(self, state):
@@ -112,6 +114,7 @@ class YuanYangEnv:
             flag2 = self.find(state_position)
         return state
     def transform(self,state, action):
+        # self.Move()
         #将当前状态转化为坐标
         current_position=self.state_to_position(state)
         next_position = [0,0]
@@ -155,34 +158,34 @@ class YuanYangEnv:
             pygame.init()
             #画一个窗口
             self.viewer=pygame.display.set_mode(self.screen_size,0,32)
-            pygame.display.set_caption("yuanyang")
+            pygame.display.set_caption("cat_mouse_game")
             #下载图片
-            self.bird_male = load_bird_male()
-            self.bird_female = load_bird_female()
+            self.cat = load_cat()
+            self.mouse = load_mouse()
             self.background = load_background()
             self.obstacle = load_obstacle()
             #self.viewer.blit(self.bird_male, self.bird_male_init_position)
             #在幕布上画图片
-            self.viewer.blit(self.bird_female, self.bird_female_position)
+            self.viewer.blit(self.mouse, self.mouse_init_position)
             self.viewer.blit(self.background, (0, 0))
-            self.font = pygame.font.SysFont('times', 35)
+            self.font = pygame.font.SysFont('times', 15)
         self.viewer.blit(self.background,(0,0))
         #画直线
         for i in range(11):
             pygame.draw.lines(self.viewer, (255, 255, 255), True, ((120*i, 0), (120*i, 900)), 1)
             pygame.draw.lines(self.viewer, (255, 255, 255), True, ((0, 90* i), (1200, 90 * i)), 1)
-        self.viewer.blit(self.bird_female, self.bird_female_position)
+        self.viewer.blit(self.mouse, self.mouse_position)
         #画障碍物
         for i in range(8):
             self.viewer.blit(self.obstacle, (self.obstacle1_x[i], self.obstacle1_y[i]))
             self.viewer.blit(self.obstacle, (self.obstacle2_x[i], self.obstacle2_y[i]))
         #画小鸟
-        self.viewer.blit(self.bird_male,  self.bird_male_position)
+        self.viewer.blit(self.cat, self.cat_position)
         # 画值函数
         for i in range(10):
             for j in range(10):
                 surface = self.font.render(str(round(float(self.value[i, j]), 3)), True, (0, 0, 0))
-                self.viewer.blit(surface, (120 * i + 35, 90 * j + 35))
+                self.viewer.blit(surface, (120 * i + 5, 90 * j + 70))
         # 画路径点
         for i in range(len(self.path)):
             rec_position = self.state_to_position(self.path[i])
@@ -193,21 +196,22 @@ class YuanYangEnv:
         self.gameover()
         # time.sleep(0.1)
         self.FPSCLOCK.tick(30)
-    def Move(self):
+
+    def Move(self,action='s'): # 控制老鼠移动
         next_position = [0, 0]
-        a1 = self.actions[int(random.random() * 4)]
-        if a1=='e':
-            next_position[0]=self.bird_female_position[0]+120
-            next_position[1]=self.bird_female_position[1]
-        if a1=='s':
-            next_position[0]=self.bird_female_position[0]
-            next_position[1]=self.bird_female_position[1]+90
-        if a1=='w':
-            next_position[0] = self.bird_female_position[0] - 120
-            next_position[1] = self.bird_female_position[1]
-        if a1=='n':
-            next_position[0] = self.bird_female_position[0]
-            next_position[1] = self.bird_female_position[1] - 90
+        # a1 = self.actions[int(random.random() * 4)]
+        if action=='e':
+            next_position[0]= self.mouse_position[0] + 120
+            next_position[1]=self.mouse_position[1]
+        if action=='s':
+            next_position[0]=self.mouse_position[0]
+            next_position[1]= self.mouse_position[1] + 90
+        if action=='w':
+            next_position[0] = self.mouse_position[0] - 120
+            next_position[1] = self.mouse_position[1]
+        if action=='n':
+            next_position[0] = self.mouse_position[0]
+            next_position[1] = self.mouse_position[1] - 90
 
         flag_collide = 0
         flag_catch = 0
@@ -217,28 +221,18 @@ class YuanYangEnv:
         flag_catch = self.catch(next_position)
 
         if flag_collide==0 and flag_catch==0:
-            self.bird_female_position=next_position
-
-
-
-
-
-
+            self.mouse_position=next_position
+            self.runway.append(next_position)
+            return next_position
+        self.runway.append(self.mouse_position)
+        return self.mouse_position
 
 
 
 if __name__=="__main__":
-    yy=YuanYangEnv()
+    yy=CatMouseGame()
     yy.render()
     while True:
         for event in pygame.event.get():
             if event.type == QUIT:
                 exit()
-            if event.type==MOUSEBUTTONDOWN:
-                print('鼠标按下',event.pos)
-            if event.type==MOUSEBUTTONUP:
-                print('鼠标松开')
-            if event.type==pygame.KEYDOWN:
-                print('键盘按下',chr(event.key))
-            if event.type==pygame.KEYDOWN:
-                print('键盘抬起')

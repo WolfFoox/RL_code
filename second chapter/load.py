@@ -6,15 +6,16 @@ from sys import  exit
 current_dir = os.path.split(os.path.realpath(__file__))[0]
 print(current_dir)
 #得到文件名
-bird_file = current_dir+"/resources/bird.png"
+bird_file1 = current_dir+"/resources/Cat.png"
+bird_file2 = current_dir+"/resources/Mouse.png"
 obstacle_file = current_dir+"/resources/obstacle.png"
 background_file = current_dir+"/resources/background.png"
 #创建小鸟，
 def load_bird_male():
-    bird = pygame.image.load(bird_file).convert_alpha()
+    bird = pygame.image.load(bird_file1).convert_alpha()
     return bird
 def load_bird_female():
-    bird = pygame.image.load(bird_file).convert_alpha()
+    bird = pygame.image.load(bird_file2).convert_alpha()
     return bird
 #得到背景
 def load_background():
